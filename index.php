@@ -9,6 +9,7 @@ declare(strict_types=1);
 // We are going to use session variables so we need to enable sessions
 session_start();
 
+
 // Use this function when you need to need an overview of these variables
 function whatIsHappening() {
     echo '<h2>$_GET</h2>';
@@ -45,7 +46,7 @@ $totalValue = 0;
     //Input fields validation
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //Email Validation
-        if (emptyempty($_POST["email"])) {
+        if (empty($_POST["email"])) {
             $emailError = "Email is required";
         } else {
             $email = input_data($_POST["email"]);
@@ -56,7 +57,7 @@ $totalValue = 0;
         }
 
         //Street Validation
-        if (emptyempty($_POST["street"])) {
+        if (empty($_POST["street"])) {
             $streetErrorErr = "Name is required";
         } else {
             $street = input_data($_POST["street"]);
@@ -67,7 +68,7 @@ $totalValue = 0;
         }
 
         //Number street Validation
-        if (emptyempty($_POST["streetnumber"])) {
+        if (empty($_POST["streetnumber"])) {
             $streetnumberError = "street number is required";
         } else {
             $streetnumber = input_data($_POST["streetnumber"]);
@@ -83,7 +84,7 @@ $totalValue = 0;
 
 
         //city name  Validation
-        if (emptyempty($_POST["city"])) {
+        if (empty($_POST["city"])) {
             $cityError = "Name is required";
         } else {
             $city = input_data($_POST["city"]);
@@ -94,7 +95,7 @@ $totalValue = 0;
         }
 
         //zipcode Validation
-        if (emptyempty($_POST["zipcode"])) {
+        if (empty($_POST["zipcode"])) {
             $zipcodeError = "post code number is required";
         } else {
             $zipcode = input_data($_POST["zipcode"]);
@@ -110,25 +111,27 @@ $totalValue = 0;
 
     }
 
-    if (emptyempty($error)){
+    if (empty($error)){
         return $error;
     }
       // return [];
 
-     function input_data($data): string
-     {
-         $data = trim($data);
-         $data = stripslashes($data);
-         $data = htmlspecialchars($data);
-         return $data;
-     }
+
  }
+function input_data($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 
 
 
 function handleForm()
 {
     // TODO: form related tasks (step 1)
+   // echo "inside handleForm";exit();
 
     // Validation (step 2)
     $invalidFields = validate();
@@ -143,10 +146,11 @@ function handleForm()
 
             if($emailError == "" && $streetError == "" && $streetnumberError == "" && $cityError == "" && $zipcodeError  == "") {
 
-                echo "<h3 color = #FF0001> <b>You have successfully registered</b> </h3>";
-                echo "<h2>Your Input:</h2> email address: ".$email."<br> street name: ".$street."<br> street No: ".$streetnumber."<br>city name: ".$city. "<br> post code: ".$zipcode;
+                echo "<div style='padding-left: 50px;'><h3 color = #0edd11;> <b>You have successfully registered</b> </h3></div>";
+                echo "<div  style='padding-left: 50px;'><h3>Your Input:</h3>email address: ".$email."<br> street name: ".$street."<br> street No: ".$streetnumber."<br>city name: ".$city. "<br> post code:  </div>".$zipcode;
             } else {
-                echo "<h3> <b>You didn't fille up the form correctly.</b> </h3>";
+                echo "<div  style='padding-left: 50px;'><h3><b>You didn't fille up the form correctly.</b> </h3></div>";
+
             }
         }
     }
@@ -154,8 +158,9 @@ function handleForm()
 
 // TODO: replace this if by an actual check
 $formSubmitted = false;
-if ($formSubmitted) {
+if(isset($_POST['submit'])) {
     handleForm();
 }
-
 require 'form-view.php';
+
+

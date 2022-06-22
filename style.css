@@ -1,0 +1,46 @@
+footer {
+    text-align: center;
+}
+
+
+#button{
+    background-color: white;
+    width: auto;
+    height: 10vh;
+
+}
+
+.error {color: #FF0000;}
+
+
+#button{
+    display: inline-block;
+   /* color: #fff;*/
+    text-decoration: none;
+    padding: 20px 50px;
+    border: 3px solid #1349eb;
+    border-radius: 10px;
+   /* margin-left: 500px;*/
+    float: right;
+    background-color: rgb(8, 86, 86);
+    margin-top: 15px;
+    font-size: 1.5em;
+    color: white;
+
+}
+
+#button a{
+    color: white;
+    text-decoration: none;
+}
+
+#button:hover{
+    animation: pulsate 15s  ease-in-out;
+
+}
+
+@keyframes pulsate{
+    0%{
+        box-shadow: 0 0 10px #5ddcff, 0 0 20px #4e00c2;
+    }
+}
